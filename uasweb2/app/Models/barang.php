@@ -12,7 +12,7 @@ class barang extends Model
 
     protected $fillable = ['kode_barang', 'nama_barang', 'harga_jual', 'harga_pokok', 'kategori_id'];
 
-    public function prodi()
+    public function kategori()
     {
         return $this->belongsTo(kategori::class,'kategori_id','id');
     }

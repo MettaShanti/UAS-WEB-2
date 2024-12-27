@@ -12,7 +12,7 @@ class stok extends Model
 
     protected $fillable = ['jumlah', 'tgl_masuk', 'tgl_expired', 'keterangan', 'barang_id'];
 
-    public function prodi()
+    public function barang()
     {
         return $this->belongsTo(barang::class,'barang_id','id');
     }
