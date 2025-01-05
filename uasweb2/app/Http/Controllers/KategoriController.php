@@ -104,6 +104,17 @@ class KategoriController extends Controller
         $kategori->delete();
         return redirect()->route('kategori.index')->with('succes','Data kategori Berhasil di Hapus');
     }
+
+    public function getKategori(){
+        $response['data'] = kategori::all();
+        //$response['data'] = kategori::with('kategori')->get(); 
+        $response['message'] = 'List data Kategori';
+        $response['success'] = true;
+    
+        return response()->json($response, 200);
+    }
+    
+
     public function storeKategori(Request $request){
         $input = $request->validate([
             "nama_kategori" =>"required|unique:kategoris",

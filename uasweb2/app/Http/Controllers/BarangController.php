@@ -108,6 +108,14 @@ class BarangController extends Controller
         return redirect()->route('barang.index')->with('succes','Data barang Berhasil di Hapus');
     }
 
+    public function getBarang(){
+        //$response['data'] = kategori::with('kategori')->get();
+         $response['data'] = barang::with('kategori')->get();
+         $response['message'] = 'List data Barang';
+         $response['success'] = true;
+ 
+         return response()->json($response, 200);
+     }
     public function storeBarang(Request $request){
         $input = $request->validate([
             "kode_barang" =>"required|unique:barangs",

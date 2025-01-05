@@ -108,27 +108,38 @@ class StokController extends Controller
         return redirect()->route('stok.index')->with('succes','Data stok Berhasil di Hapus');
     }
 
-    public function storeStok(Request $request){
-        $input = $request->validate([
-            "jumlah"        =>"required|unique:kategoris",
-            "tgl_masuk"     =>"required",
-            "tgl_expired"   =>"required",
-            "keterangan"    =>"required",
-            "barang_id"     =>"required"
-        ]);
+    public function getStok(){
+        //$response['data'] = stok::all();
+         $response['data'] = stok::with('barang')->get();
+         $response['message'] = 'List data Stok';
+         $response['success'] = true;
+ 
+         return response()->json($response, 200);
+     }
 
-        //simpan
-        $hasil = stok::create($input);
-        if($hasil){// jika berhasil disimpan
-            $response['success'] = true;
-            $response['message'] = $request-> barang_id." Berhasil Disimpan";
-            return response()->json($response, 201); // 201 create atau sudah berhasil disimpan
-        }else{
-            $response['success'] = false;
-            $response['message'] = $request->barang_id. " Gagal Disimpan";
-            return response()->json($response, 400); //400 bad request
-        }
-    }
+     public function storeStok(Request $request)
+     {
+         $input = $request->validate([
+             "jumlah"        => "required|unique:stoks",
+             "tgl_masuk"     => "required",
+             "tgl_expired"   => "required",
+             "keterangan"    => "required",
+             "barang_id"     => "required" 
+         ]);
+     
+         $hasil = stok::create($input);
+     
+         if ($hasil) { 
+             $response['success'] = true;
+             $response['message'] = $request->barang_id . " stok Berhasil Disimpan";
+             return response()->json($response, 201); // HTTP 201 Created
+         } else {
+             $response['success'] = false;
+             $response['message'] = $request->barang_id . " stok Gagal Disimpan";
+             return response()->json($response, 400); // HTTP 400 Bad Request
+         }
+     }
+     
 
     public function destroyStok($id)
     {
