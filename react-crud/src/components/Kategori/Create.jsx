@@ -1,19 +1,15 @@
 /* eslint-disable no-unused-vars */
-// src/components/mahasiswa/Create.jsx
+// src/components/kategori/Create.jsx
 import React, { useState, useEffect } from "react"; // Import React dan hooks
 import axios from "axios"; // Import axios untuk melakukan HTTP request
 
-export default function CreateMahasiswa() {
-  // Inisialisasi state untuk menyimpan data mahasiswa
-  const [npm, setNpm] = useState("");
-  const [namaMahasiswa, setNamaMahasiswa] = useState("");
-  const [tanggalLahir, setTanggalLahir] = useState("");
-  const [tempatLahir, setTempatLahir] = useState("");
-  const [email, setEmail] = useState("");
-  const [hp, setHp] = useState("");
-  const [alamat, setAlamat] = useState("");
-  const [prodiId, setProdiId] = useState("");
-  const [prodiList, setProdiList] = useState([]);
+export default function CreateKategori() {
+  // Inisialisasi state untuk menyimpan data kategori
+  const [namaKategori, setNamaKategori] = useState("");
+  const [jenis, setJenis] = useState("");
+  const [deskripsi, setDeskripsi] = useState("");
+  const [status, setStatus] = useState("");
+  
   // Inisialisasi state untuk menyimpan pesan error
   const [error, setError] = useState("");
   // Inisialisasi state untuk menyimpan pesan sukses
@@ -24,7 +20,7 @@ export default function CreateMahasiswa() {
     const fetchProdi = async () => {
       try {
         const response = await axios.get(
-          "https://academic-mi5a.vercel.app/api/api/prodi"
+          ""
         );
         setProdiList(response.data.data); // Simpan data fakultas ke dalam state
       } catch (error) {

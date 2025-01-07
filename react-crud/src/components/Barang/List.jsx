@@ -10,7 +10,7 @@ export default function List(){
     //akses api
     useEffect( () => {
         axios
-        .get("https://academic-mi5a.vercel.app/api/api/fakultas")
+        .get("")
         .then( (response)=> {
             console.log(response);
             setBarang(response.data.data)// reault diganti(disesuaikan inspect)
@@ -31,7 +31,7 @@ const handleDelete = (id, nama_barang) => {
       if (result.isConfirmed) {
         // Lakukan penghapusan jika dikonfirmasi
         axios
-          .delete(`https://academic-mi5a.vercel.app/api/api/fakultas/${id}`)
+          .delete(`/${id}`)
           .then((response) => {
             // Hapus barang dari state setelah sukses dihapus dari server
             setBarang(barang.filter((data) => data.id !== id));

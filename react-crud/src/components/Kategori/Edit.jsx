@@ -10,7 +10,7 @@ export default function Edit() {
   const [namaBarang, setNamaBarang] = useState("");
   const [hargaJual, setHargaJual] = useState("");
   const [hargaPokok, setHargaPokok] = useState("");
-  const [kategoriId, setKategoriId] = useState([]);
+  const [kategoriId, setKategoriId] = useState("");
 
   const [error, setError] = useState(null);  // Menginisialisasi state 'error' untuk menyimpan pesan error jika ada
 
@@ -23,7 +23,7 @@ export default function Edit() {
         setNamaBarang(response.data.result.namaBarang);
         setHargaJual(response.data.result.hargaJual);  // Jika sukses, mengisi state 'nama' dengan nama fakultas dari 
         setHargaPokok(response.data.result.hargaPokok);  // Jika sukses, mengisi state 'nama' dengan nama fakultas dari response
-        setKategoriId(response.data.result.kategoriId.id);  // Jika sukses, mengisi state 'nama' dengan nama fakultas dari response
+        setKategoriId(response.data.result.kategoriId);  // Jika sukses, mengisi state 'nama' dengan nama fakultas dari response
 
       })
       .catch((error) => {
