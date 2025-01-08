@@ -18,7 +18,7 @@ export default function Edit() {
   useEffect(() => {
     // Mengambil data prodi berdasarkan ID
     axios
-      .get(`/${id}`)
+      .get(`https://uas-web-2-git-main-metta-shantis-projects.vercel.app/api/api/stok/${id}`)
       .then((response) => {
         setJumlah(response.data.result.jumlah); // Menyimpan nama prodi ke dalam state 'nama'
         setTglMasuk(response.data.result.tglMasuk);
@@ -33,7 +33,7 @@ export default function Edit() {
 
     // Mengambil data fakultas untuk dropdown
     axios
-      .get("") // Request ke API barang
+      .get("https://uas-web-2-git-main-metta-shantis-projects.vercel.app/api/api/barang") // Request ke API barang
       .then((response) => {
         setListBarang(response.data.data); // Menyimpan daftar fakultas ke dalam state 'listFakultas'// resut
       })
@@ -64,7 +64,7 @@ export default function Edit() {
   const handleSubmit = (e) => {
     e.preventDefault(); // Mencegah reload halaman saat form disubmit
     axios
-      .patch(`/${id}`, {jumlah, tgl_masuk, tgl_expired, barang_id: barang}) // Mengirimkan request PATCH untuk mengupdate data prodi berdasarkan ID
+      .patch(`https://uas-web-2-git-main-metta-shantis-projects.vercel.app/api/api/stok/${id}`, {jumlah, tgl_masuk, tgl_expired, barang_id: barang}) // Mengirimkan request PATCH untuk mengupdate data prodi berdasarkan ID
       .then((response) => {
         navigate("/stok"); // Jika update berhasil, navigasi kembali ke halaman list prodi
       })

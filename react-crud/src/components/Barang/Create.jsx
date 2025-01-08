@@ -23,7 +23,7 @@ export default function CreateStok() {
     const fetchKategori = async () => {
       try {
         const response = await axios.get(
-          ""
+          "https://uas-web-2-git-main-metta-shantis-projects.vercel.app/api/api/kategori"
         );
         setListKategori(response.data.data); // Simpan data fakultas ke dalam state
       } catch (error) {
@@ -60,7 +60,7 @@ export default function CreateStok() {
     try {
       // Melakukan HTTP POST request untuk menyimpan data prodi
       const response = await axios.post(
-        "", // Endpoint API yang dituju
+        "https://uas-web-2-git-main-metta-shantis-projects.vercel.app/api/api/barang", // Endpoint API yang dituju
         {
           kode_barang: kodeBarang, // Data nama prodi
           nama_barang: namaBarang,

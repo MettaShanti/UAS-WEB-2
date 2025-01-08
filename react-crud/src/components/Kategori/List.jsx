@@ -10,7 +10,7 @@ export default function List(){
     //akses api
     useEffect( () => {
         axios
-        .get("")
+        .get("https://uas-web-2-git-main-metta-shantis-projects.vercel.app/api/api/kategori")
         .then( (response)=> {
             console.log(response);
             setKategori(response.data.data)// reault diganti(disesuaikan inspect)
@@ -30,7 +30,7 @@ const handleDelete = (id, nama_ketegori) => {
       if (result.isConfirmed) {
         // Lakukan penghapusan jika dikonfirmasi
         axios
-          .delete(`/${id}`)
+          .delete(`https://uas-web-2-git-main-metta-shantis-projects.vercel.app/api/api/kategori/${id}`)
           .then((response) => {
             // Hapus fakultas dari state setelah sukses dihapus dari server
             setKategori(kategori.filter((data) => data.id !== id));

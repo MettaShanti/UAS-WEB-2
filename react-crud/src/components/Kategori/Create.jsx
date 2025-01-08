@@ -44,7 +44,7 @@ export default function CreateKategori() {
     try {
       // Melakukan HTTP POST request untuk menyimpan data fakultas
       const response = await axios.post(
-        "", // Endpoint API yang dituju
+        "https://uas-web-2-git-main-metta-shantis-projects.vercel.app/api/api/kategori", // Endpoint API yang dituju
         {
           nama_kategori: namaKategori, // Data yang dikirim berupa objek JSON dengan properti 'nama'
           jenis: jenis,

@@ -16,7 +16,7 @@ export default function Edit() {
   // Mengambil data fakultas berdasarkan id ketika komponen pertama kali dimuat
   useEffect(() => {
     axios
-      .get(`/${id}`) // Mengirimkan request GET untuk mendapatkan data fakultas berdasarkan ID
+      .get(`https://uas-web-2-git-main-metta-shantis-projects.vercel.app/api/api/kategori/${id}`) // Mengirimkan request GET untuk mendapatkan data fakultas berdasarkan ID
       .then((response) => {
         setNamaKategori(response.data.result.nama_ketegori);  // Jika sukses, mengisi state 'nama' dengan nama fakultas dari 
         setJenis(response.data.result.jenis);  // Jika sukses, mengisi state 'nama' dengan nama fakultas dari response
@@ -51,7 +51,7 @@ export default function Edit() {
   const handleSubmit = (e) => {
     e.preventDefault();  // Mencegah reload halaman saat form disubmit
     axios
-      .put(`/${id}`, { nama_ketegori, jenis, deskripsi, status })  // Mengirimkan request PATCH untuk mengupdate data fakultas berdasarkan ID
+      .put(`https://uas-web-2-git-main-metta-shantis-projects.vercel.app/api/api/kategori/${id}`, { nama_ketegori, jenis, deskripsi, status })  // Mengirimkan request PATCH untuk mengupdate data fakultas berdasarkan ID
       .then((response) => {
         navigate("/kategori");  // Jika update berhasil, navigasi kembali ke halaman list fakultas
       })
