@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Absensi</title>
+  <title>Spica Admin</title>
   <!-- base:css -->
   <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
@@ -16,7 +16,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="../../css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../images/logo.svg" />
+  <link rel="shortcut icon" href="../../images/favicon.png" />
 </head>
 
 <body>
@@ -27,7 +27,7 @@
           <div class="col-lg-6 d-flex align-items-center justify-content-center">
             <div class="auth-form-transparent text-left p-3">
               <div class="brand-logo">
-                <img src="remove.png" alt="logo">
+                <img src="" alt="logo">
               </div>
               <h4>Welcome back!</h4>
               <h6 class="font-weight-light">Happy to see you again!</h6>
@@ -62,9 +62,10 @@
                   <div class="form-check">
                     <label class="form-check-label text-muted">
                       <input type="checkbox" class="form-check-input">
+                      Keep me signed in
                     </label>
                   </div>
-                  <a href="#" class="auth-link text-black"></a>
+                  <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
                 <div class="my-3">
                     {{-- button type="submit" --}}
@@ -72,7 +73,7 @@
                 </div>
                 <div class="text-center mt-4 font-weight-light">
                     {{-- {{ route('register')}} --}}
-                  <!-- Don't have an account? <a href="{{ route('register')}}" class="text-primary">Create</a> -->
+                  Don't have an account? <a href="{{ route('register')}}" class="text-primary">Create</a>
                 </div>
               </form>
             </div>
