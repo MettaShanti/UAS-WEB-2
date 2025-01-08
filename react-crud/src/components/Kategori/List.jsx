@@ -17,7 +17,7 @@ export default function List(){
         })
     }, [])
 // Fungsi untuk menghapus fakultas berdasarkan ID dengan konfirmasi SweetAlert2
-const handleDelete = (id, nama) => {
+const handleDelete = (id, nama_ketegori) => {
     Swal.fire({
       title: "Are you sure?",
       text: `You won't be able to revert this! Kategori: ${nama_ketegori}`,
@@ -69,7 +69,7 @@ const handleDelete = (id, nama) => {
                         <td>{data.deskripsi}</td>
                         <td>{data.status}</td>
                         <NavLink>
-                            <button onClick={() => handleDelete(data.id, data.nama)}
+                            <button onClick={() => handleDelete(data.id, data.nama_ketegori)}
                                 className="btn btn-danger"> Delete
                             </button>
                         </NavLink>

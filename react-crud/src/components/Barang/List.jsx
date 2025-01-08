@@ -70,7 +70,7 @@ const handleDelete = (id, nama_barang) => {
                             <td>{data.nama_barang}</td>
                             <td>{data.harga_jual}</td>
                             <td>{data.harga_pokok}</td>
-                            <td>{data.kategori_id}</td>
+                            <td>{data.kategori.nama_kategori}</td>
                             <td>
                             <NavLink to={`/barang/edit/${data.id}`}
                                 className="btn btn-warning">Edit

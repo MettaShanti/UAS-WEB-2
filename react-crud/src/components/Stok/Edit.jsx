@@ -6,23 +6,25 @@ import axios from "axios"; // Mengimpor axios untuk melakukan request HTTP
 export default function Edit() {
   const { id } = useParams(); // Mengambil parameter "id" dari URL menggunakan useParams
   const navigate = useNavigate(); // Menggunakan useNavigate untuk navigasi setelah proses selesai
-  const [nama, setNama] = useState(""); // Menginisialisasi state 'nama' untuk menyimpan nama prodi
-  const [kaprodi, setKaprodi] = useState("");
-  const [singkatan, setSingkatan] = useState("");
-  const [fakultas, setFakultas] = useState(""); // Menginisialisasi state 'fakultas' untuk menyimpan ID fakultas terpilih
-  const [listFakultas, setListFakultas] = useState([]); // Menginisialisasi state 'listFakultas' untuk menyimpan daftar fakultas dari API
+  const [jumlah, setJumlah] = useState(""); // Menginisialisasi state 'nama' untuk menyimpan nama prodi
+  const [tglMasuk, setTglMasuk] = useState("");
+  const [tglExpired, setTgalExpired] = useState("");
+  const [keterangan, setKeterangan] = useState("");
+  const [barang, setBarang] = useState(""); // Menginisialisasi state 'fakultas' untuk menyimpan ID fakultas terpilih
+  const [listBarang, setListBarang] = useState([]); // Menginisialisasi state 'listFakultas' untuk menyimpan daftar fakultas dari API
   const [error, setError] = useState(null); // Menginisialisasi state 'error' untuk menyimpan pesan error jika ada
 
   // Mengambil data prodi berdasarkan id ketika komponen pertama kali dimuat
   useEffect(() => {
     // Mengambil data prodi berdasarkan ID
     axios
-      .get(`https://academic-mi5a.vercel.app/api/api/prodi/${id}`)
+      .get(`/${id}`)
       .then((response) => {
-        setNama(response.data.result.nama); // Menyimpan nama prodi ke dalam state 'nama'
-        setKaprodi(response.data.result.kaprodi);
-        setSingkatan(response.data.result.singkatan);
-        setFakultas(response.data.result.fakultas.id); // Menyimpan ID fakultas ke dalam state 'fakultas'
+        setJumlah(response.data.result.jumlah); // Menyimpan nama prodi ke dalam state 'nama'
+        setTglMasuk(response.data.result.tglMasuk);
+        setTgalExpired(response.data.result.tglExpired);
+        setKeterangan(response.data.result.keterangan);
+        setBarang(response.data.result.barang.id); // Menyimpan ID fakultas ke dalam state 'fakultas'
       })
       .catch((error) => {
         console.error("Error fetching data:", error); // Menangani error jika request gagal
@@ -31,38 +33,40 @@ export default function Edit() {
 
     // Mengambil data fakultas untuk dropdown
     axios
-      .get("https://academic-mi5a.vercel.app/api/api/fakultas/") // Request ke API fakultas
+      .get("") // Request ke API barang
       .then((response) => {
-        setListFakultas(response.data.data); // Menyimpan daftar fakultas ke dalam state 'listFakultas'// resut
+        setListBarang(response.data.data); // Menyimpan daftar fakultas ke dalam state 'listFakultas'// resut
       })
       .catch((error) => {
-        console.error("Error fetching fakultas data:", error); // Menangani error jika request gagal
+        console.error("Error fetching barang data:", error); // Menangani error jika request gagal
       });
   }, [id]); // useEffect akan dijalankan ulang setiap kali 'id' berubah
 
   // Menghandle perubahan input saat pengguna mengetik di form
   const handleChange = (e) => {
-    setNama(e.target.value); // Mengubah state 'nama' sesuai dengan nilai input yang diisi pengguna
+    setJumlah(e.target.value); // Mengubah state 'nama' sesuai dengan nilai input yang diisi pengguna
   };
-  const handleChangeKaprodi = (e) => {
-    setKaprodi(e.target.value); // Mengubah state 'nama' sesuai dengan nilai input yang diisi pengguna
+  const handleChangeTglMasuk = (e) => {
+    setTglMasuk(e.target.value); // Mengubah state 'nama' sesuai dengan nilai input yang diisi pengguna
   };
-  const handleChangeSingkatan = (e) => {
-    setSingkatan(e.target.value); // Mengubah state 'nama' sesuai dengan nilai input yang diisi pengguna
+  const handleChangeTglExpired = (e) => {
+    setTgalExpired(e.target.value); // Mengubah state 'nama' sesuai dengan nilai input yang diisi pengguna
   };
-
+  const handleChangeKeterangan = (e) => {
+    setKeterangan(e.target.value); // Mengubah state 'nama' sesuai dengan nilai input yang diisi pengguna
+  };
   // Menghandle perubahan dropdown fakultas
-  const handleFakultasChange = (e) => {
-    setFakultas(e.target.value); // Mengubah state 'fakultas' sesuai dengan pilihan yang dipilih pengguna di dropdown
+  const handleBarangChange = (e) => {
+    setBarang(e.target.value); // Mengubah state 'fakultas' sesuai dengan pilihan yang dipilih pengguna di dropdown
   };
 
   // Menghandle submit form untuk mengedit data prodi
   const handleSubmit = (e) => {
     e.preventDefault(); // Mencegah reload halaman saat form disubmit
     axios
-      .patch(`https://academic-mi5a.vercel.app/api/api/prodi/${id}`, {nama, kaprodi, singkatan, fakultas_id: fakultas}) // Mengirimkan request PATCH untuk mengupdate data prodi berdasarkan ID
+      .patch(`/${id}`, {jumlah, tgl_masuk, tgl_expired, barang_id: barang}) // Mengirimkan request PATCH untuk mengupdate data prodi berdasarkan ID
       .then((response) => {
-        navigate("/prodi"); // Jika update berhasil, navigasi kembali ke halaman list prodi
+        navigate("/stok"); // Jika update berhasil, navigasi kembali ke halaman list prodi
       })
       .catch((error) => {
         console.error("Error updating data:", error); // Menampilkan error di console jika ada kesalahan
@@ -72,54 +76,64 @@ export default function Edit() {
 
   return (
     <div>
-      <h2>Edit Program Studi</h2> {/* Menampilkan judul halaman */}
+      <h2>Edit Stok</h2> {/* Menampilkan judul halaman */}
       {error && <p className="text-danger">{error}</p>} {/* Menampilkan pesan error jika ada */}
       <form onSubmit={handleSubmit}> {/* Form untuk mengedit nama prodi */}
         <div className="mb-3">
-          <label htmlFor="nama" className="form-label">
-            Nama Program Studi
+          <label htmlFor="jumlah" className="form-label">
+            Jumlah
           </label> {/* Label untuk input nama prodi */}
           <input
-            type="text" className="form-control" id="nama" value={nama} // Mengisi nilai input dengan state 'nama'
+            type="number" className="form-control" id="jumlah" value={jumlah} // Mengisi nilai input dengan state 'nama'
             onChange={handleChange} // Mengubah nilai input saat ada perubahan (user mengetik)
             required // Input wajib diisi
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="kaprodi" className="form-label">
-            Nama Kaprodi
+          <label htmlFor="tgl_masuk" className="form-label">
+            Tanggal Masuk
           </label> {/* Label untuk input nama prodi */}
           <input
-            type="text" className="form-control" id="kaprodi" value={kaprodi} // Mengisi nilai input dengan state 'nama'
-            onChange={handleChangeKaprodi} // Mengubah nilai input saat ada perubahan (user mengetik)
+            type="date" className="form-control" id="tgl_masuk" value={tglMasuk} // Mengisi nilai input dengan state 'nama'
+            onChange={handleChangeTglMasuk} // Mengubah nilai input saat ada perubahan (user mengetik)
             required // Input wajib diisi
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="singkatan" className="form-label">
-            Singkatan
+          <label htmlFor="tgl_expired" className="form-label">
+            Tanggal Expired
           </label> {/* Label untuk input nama prodi */}
           <input
-            type="text" className="form-control" id="singkatan" value={singkatan} // Mengisi nilai input dengan state 'nama'
-            onChange={handleChangeSingkatan} // Mengubah nilai input saat ada perubahan (user mengetik)
+            type="date" className="form-control" id="tgl_expired" value={tglExpired} // Mengisi nilai input dengan state 'nama'
+            onChange={handleChangeTglExpired} // Mengubah nilai input saat ada perubahan (user mengetik)
             required // Input wajib diisi
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="fakultas" className="form-label">
-            Nama Fakultas
+          <label htmlFor="keterangan" className="form-label">
+            Keterangan
+          </label> {/* Label untuk input nama prodi */}
+          <input
+            type="text" className="form-control" id="keterangan" value={keterangan} // Mengisi nilai input dengan state 'nama'
+            onChange={handleChangeKeterangan} // Mengubah nilai input saat ada perubahan (user mengetik)
+            required // Input wajib diisi
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="barang" className="form-label">
+            Nama Barang
           </label> {/* Label untuk dropdown fakultas */}
           <select
-            className="form-select" id="fakultas" value={fakultas} // Mengisi nilai dropdown dengan state 'fakultas'
-            onChange={handleFakultasChange} // Mengubah nilai dropdown saat pengguna memilih fakultas
+            className="form-select" id="barang" value={barang} // Mengisi nilai dropdown dengan state 'fakultas'
+            onChange={handleBarangChange} // Mengubah nilai dropdown saat pengguna memilih fakultas
             required // Dropdown wajib dipilih
           >
-            <option value="">Pilih Fakultas</option> {/* Default option untuk dropdown */}
-            {listFakultas.map(
+            <option value="">Pilih Barang</option> {/* Default option untuk dropdown */}
+            {listBarang.map(
               // Melakukan mapping dari daftar fakultas untuk menampilkan setiap fakultas sebagai opsi
               (data) => (
                 <option key={data.id} value={data.id}>
-                  {data.nama} {/* Menampilkan nama fakultas */}
+                  {data.nama_barang} {/* Menampilkan nama fakultas */}
                 </option>
               )
             )}
