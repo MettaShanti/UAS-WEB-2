@@ -2,7 +2,7 @@
 
 @section('content')
 <h4>Detail Pegawai</h4>
-<form action="{{ route('kategori.update', $kategori['id'])}}" method="post">
+<form action="{{ route('kategori.update')}}" method="post">
     @csrf
     @method('PUT') 
 
@@ -10,19 +10,19 @@
     @error('nama_kategori')
         <span class="text-danger">({{ $message }})</span>
     @enderror
-    <input type="numer" name="nama_kategori" id="" class="form-control mb-2" value="{{ $kategori['nama_kategori']}}">
+    <input type="text" name="nama_kategori" id="" class="form-control mb-2" value="{{ $kategori['nama_kategori']}}">
 
     jenis
     @error('jenis')
         <span class="text-danger">({{ $message }})</span>
     @enderror
-    <input type="date" name="jenis" id="" class="form-control mb-2" value="{{ $kategori['jenis']}}">
+    <input type="text" name="jenis" id="" class="form-control mb-2" value="{{ $kategori['jenis']}}">
     
     deskripsi 
     @error('deskripsi')
         <span class="text-danger">({{ $message }})</span>
     @enderror
-    <input type="date" name="deskripsi" id="" class="form-control mb-2" value="{{ $kategori['deskripsi']}}">
+    <input type="text" name="deskripsi" id="" class="form-control mb-2" value="{{ $kategori['deskripsi']}}">
     
     status
     @error('status')

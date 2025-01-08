@@ -26,7 +26,9 @@ class BarangController extends Controller
      */
     public function create()
     {
-        return view('barang.create');
+        $kategori = kategori::all();
+        return view('barang.create')->with('kategori', $kategori);
+        
     }
 
     /**
@@ -39,10 +41,10 @@ class BarangController extends Controller
         //validasi input nama imput disamakan dengan tabel kolom
         $input = $request->validate([
             "kode_barang" =>"required|unique:barangs",
-            "nama_barang" => "required",
-            "harga_jual"  => "required",
-            "harga_pokok"  => "required",
-            "kategori_id"  => "required"
+            "nama_barang" =>"required",
+            "harga_jual"  =>"required",
+            "harga_pokok" =>"required",
+            "kategori_id" =>"required"
         ]);
 
         //simpan
@@ -65,10 +67,9 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        // edit data
         $barang = barang::find($id);
-        $kategori = kategori::all(); //ditambah ini
-        //dd($barang);
+        $kategori = kategori::all();
+
         return view('barang.edit')->with('barang', $barang)->with('kategori', $kategori);
     }
 

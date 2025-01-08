@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<h4>Detail Pegawai</h4>
+<h4>Barang</h4>
 <form action="{{ route('barang.update', $barang['id'])}}" method="post">
     @csrf
     @method('PUT') 
@@ -36,7 +36,7 @@
     @enderror 
     <select name="kategori_id" class="form-control" value="{{ $barang['kategori_id']}}">
         @foreach ($kategori as $item)
-            <option value="{{ $item['id'] }}" {{$item['id'] == $kategori['kategori_id'] ? "selected":null}} > {{ $item['nama_kategori'] }} </option>
+            <option value="{{ $item['id'] }}" {{$item['id'] == $barang['kategori_id'] ? "selected":null}} > {{ $item['nama_kategori'] }} </option>
         @endforeach
     </select>
 

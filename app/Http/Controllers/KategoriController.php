@@ -41,7 +41,6 @@ class KategoriController extends Controller
             "jenis"         =>"required",
             "deskripsi"     =>"required",
             "status"        =>"required",
-            //"kategori_id"   =>"required"
         ]);
 
         //simpan
@@ -83,7 +82,7 @@ class KategoriController extends Controller
             "nama_kategori" =>"required",
             "jenis"         =>"required",
             "deskripsi"     =>"required",
-            "status"        =>"required",
+            "status"        =>"required"
         ]);
 
         //update data
