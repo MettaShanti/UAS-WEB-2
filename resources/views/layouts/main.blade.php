@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Absensi</title>
+  <title>Iventory Barang</title>
   <!-- base:css -->
   <link rel="stylesheet" href="{{ url('vendors/mdi/css/materialdesignicons.min.css') }}">
   <link rel="stylesheet" href="{{ url('vendors/css/vendor.bundle.base.css')}}">
@@ -16,7 +16,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ url('css/style.css')}}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{ url('images/logo.svg')}}" />
+  <link rel="shortcut icon" href="{{ url('images/')}}" />
 
   <!-- tambahkan css ini untuk cari-->
   <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
