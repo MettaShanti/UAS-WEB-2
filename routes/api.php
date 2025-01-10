@@ -28,4 +28,4 @@ Route::delete("stok/{id}",[StokController::class, 'destroyStok']);//->middleware
 Route::put("stok/{id}",[StokController::class, 'updateStok']);//->middleware('auth:sanctum', 'ability:delete');
 
 //login
-//Route::post('login', [AuthController::class, 'login']);
+Route::post('login', [AuthController::class, 'login']);
