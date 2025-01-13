@@ -57,9 +57,13 @@ class BarangController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(barang $barang)
+    public function show($barang)
     {
-        //
+        $barang = barang::find($barang);
+        $data['success'] = true;
+        $data['message'] = "Detail data barang";
+        $data['result'] = $barang;
+        return response()->json($data, 200);
     }
 
     /**
@@ -79,7 +83,7 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         $barang = barang::find($id);
-        dd(vars: $barang);
+        //dd(vars: $barang);
 
         //validasi input nama imput disamakan dengan tabel kolom
         $input = $request->validate([

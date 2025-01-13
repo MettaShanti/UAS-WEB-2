@@ -57,9 +57,13 @@ class StokController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(stok $stok)
+    public function show($stok)
     {
-        //
+        $stok = stok::find($stok);
+        $data['success'] = true;
+        $data['message'] = "Detail data stok";
+        $data['result'] = $stok;
+        return response()->json($data, 200);
     }
 
     /**

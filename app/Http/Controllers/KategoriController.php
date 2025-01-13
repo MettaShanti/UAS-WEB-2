@@ -53,9 +53,13 @@ class KategoriController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(kategori $kategori)
+    public function show($kategori)
     {
-        //
+        $kategori = kategori::find($kategori);
+        $data['success'] = true;
+        $data['message'] = "Detail data kategori";
+        $data['result'] = $kategori;
+        return response()->json($data, 200);
     }
 
     /**
