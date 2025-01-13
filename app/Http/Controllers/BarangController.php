@@ -79,7 +79,7 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         $barang = barang::find($id);
-        //dd(vars: $barang);
+        dd(vars: $barang);
 
         //validasi input nama imput disamakan dengan tabel kolom
         $input = $request->validate([
