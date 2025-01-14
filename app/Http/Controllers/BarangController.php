@@ -127,7 +127,7 @@ class BarangController extends Controller
     {
         // cari data di tabel fakultas berdasarkan "id" fakultas
         $barang = barang ::find($id);
-        // dd($kunjungan);
+        // dd($barang);
         $hasil = $barang->delete();
         if($hasil){ // jika data berhasil disimpan
             $response['success'] = true;

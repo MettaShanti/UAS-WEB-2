@@ -135,11 +135,11 @@ class StokController extends Controller
      
          if ($hasil) { 
              $response['success'] = true;
-             $response['message'] = $request->barang_id . " stok Berhasil Disimpan";
+             $response['message'] = $request->jumlah . " stok Berhasil Disimpan";
              return response()->json($response, 201); // HTTP 201 Created
          } else {
              $response['success'] = false;
-             $response['message'] = $request->barang_id . " stok Gagal Disimpan";
+             $response['message'] = $request->jumlah . " stok Gagal Disimpan";
              return response()->json($response, 400); // HTTP 400 Bad Request
          }
      }
@@ -153,11 +153,11 @@ class StokController extends Controller
         $hasil = $stok->delete();
         if($hasil){// jika berhasil disimpan
             $response['success'] = true;
-            $response['message'] =" stok Berhasil Dihapus";
+            $response['message'] ="stok Berhasil Dihapus";
             return response()->json($response, 201); // 201 create atau sudah berhasil disimpan
         }else{
             $response['success'] = false;
-            $response['message'] =  "stok gagal dihapus";
+            $response['message'] = "stok gagal dihapus";
             return response()->json($response, 400); //400 bad request
         }
     }
@@ -183,7 +183,7 @@ class StokController extends Controller
             return response()->json($response, 201); // 201 create atau sudah berhasil disimpan
         }else{
             $response['success'] = false;
-            $response['message'] =  "stok gagal diubah";
+            $response['message'] = "stok gagal diubah";
             return response()->json($response, 400); //400 bad request
         }
     }
