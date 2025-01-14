@@ -84,14 +84,14 @@ class BarangController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-        // cari data di table barang berdasarkan "id" barang
-        $barang = barang::find($id);
-        //dd($barang);
-        $barang->delete();
-        return redirect()->route('barang.index')->with('succes','Data barang Berhasil di Hapus');
-    }
+    // public function destroy($id)
+    // {
+    //     // cari data di table barang berdasarkan "id" barang
+    //     $barang = barang::find($id);
+    //     //dd($barang);
+    //     $barang->delete();
+    //     return redirect()->route('barang.index')->with('succes','Data barang Berhasil di Hapus');
+    // }
 
     public function getBarang(){
         //$response['data'] = kategori::with('kategori')->get();
@@ -125,18 +125,18 @@ class BarangController extends Controller
 
     public function destroyBarang($id)
     {
-        // cari data di table barang berdasarkan "id" barang
-        $barang = barang::find($id);
-        //dd($barang);
+        // cari data di tabel fakultas berdasarkan "id" fakultas
+        $barang = barang ::find($id);
+        // dd($kunjungan);
         $hasil = $barang->delete();
-        if($hasil){// jika berhasil disimpan
+        if($hasil){ // jika data berhasil disimpan
             $response['success'] = true;
-            $response['message'] =" Barang Berhasil Dihapus";
-            return response()->json($response, 201); // 201 create atau sudah berhasil disimpan
-        }else{
+            $response['message'] = "Data barang berhasil dihapus";
+            return response()->json($response, 200);
+        } else {
             $response['success'] = false;
-            $response['message'] =  "Barang gagal dihapus";
-            return response()->json($response, 400); //400 bad request
+            $response['message'] = "Data barang gagal dihapus";
+            return response()->json($response, 400);
         }
     }
 
