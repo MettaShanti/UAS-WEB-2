@@ -80,26 +80,26 @@ class BarangController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    {
-        $barang = barang::find($id);
-        //dd(vars: $barang);
+    // public function update(Request $request, $id)
+    // {
+    //     $barang = barang::find($id);
+    //     //dd(vars: $barang);
 
-        //validasi input nama imput disamakan dengan tabel kolom
-        $input = $request->validate([
-            "kode_barang" =>"required",
-            "nama_barang" =>"required",
-            "harga_jual"  =>"required",
-            "harga_pokok" =>"required",
-            "kategori_id" =>"required"
-        ]);
+    //     //validasi input nama imput disamakan dengan tabel kolom
+    //     $input = $request->validate([
+    //         "kode_barang" =>"required",
+    //         "nama_barang" =>"required",
+    //         "harga_jual"  =>"required",
+    //         "harga_pokok" =>"required",
+    //         "kategori_id" =>"required"
+    //     ]);
 
-        //update data
-        $barang->update($input);
+    //     //update data
+    //     $barang->update($input);
 
-        //redirect beserta pesan sukses
-        return redirect()->route('barang.index')->with('success', $request->nama_barang.' Berhasil Diubah');
-    }
+    //     //redirect beserta pesan sukses
+    //     return redirect()->route('barang.index')->with('success', $request->nama_barang.' Berhasil Diubah');
+    // }
 
     /**
      * Remove the specified resource from storage.
