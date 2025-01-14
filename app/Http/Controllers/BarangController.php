@@ -80,26 +80,6 @@ class BarangController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    // public function update(Request $request, $id)
-    // {
-    //     $barang = barang::find($id);
-    //     //dd(vars: $barang);
-
-    //     //validasi input nama imput disamakan dengan tabel kolom
-    //     $input = $request->validate([
-    //         "kode_barang" =>"required",
-    //         "nama_barang" =>"required",
-    //         "harga_jual"  =>"required",
-    //         "harga_pokok" =>"required",
-    //         "kategori_id" =>"required"
-    //     ]);
-
-    //     //update data
-    //     $barang->update($input);
-
-    //     //redirect beserta pesan sukses
-    //     return redirect()->route('barang.index')->with('success', $request->nama_barang.' Berhasil Diubah');
-    // }
 
     /**
      * Remove the specified resource from storage.
@@ -160,7 +140,7 @@ class BarangController extends Controller
         }
     }
 
-    public function updateBarang(Request $request,$id)
+    public function updateBarang(Request $request, $id)
     {
         $barang = barang::find($id);
         //validasi input nama imput disamakan dengan tabel kolom
