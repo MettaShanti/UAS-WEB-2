@@ -143,7 +143,6 @@ class BarangController extends Controller
     public function updateBarang(Request $request, $id)
     {
         $barang = barang::find($id);
-       
         // validasi input
         $input = $request->validate([
             "kode_barang" =>"required",

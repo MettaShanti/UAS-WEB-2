@@ -76,25 +76,25 @@ class KategoriController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    {
-        $kategori = kategori::find($id);
-        //dd(vars: $kategori);
+    // public function update(Request $request, $id)
+    // {
+    //     $kategori = kategori::find($id);
+    //     //dd(vars: $kategori);
 
-        //validasi input nama imput disamakan dengan tabel kolom
-        $input = $request->validate([
-            "nama_kategori" =>"required",
-            "jenis"         =>"required",
-            "deskripsi"     =>"required",
-            "status"        =>"required"
-        ]);
+    //     //validasi input nama imput disamakan dengan tabel kolom
+    //     $input = $request->validate([
+    //         "nama_kategori" =>"required",
+    //         "jenis"         =>"required",
+    //         "deskripsi"     =>"required",
+    //         "status"        =>"required"
+    //     ]);
 
-        //update data
-        $kategori->update($input);
+    //     //update data
+    //     $kategori->update($input);
 
-        //redirect beserta pesan sukses
-        return redirect()->route('kategori.index')->with('success', $request->nama_kategori.' Berhasil Diubah');
-    }
+    //     //redirect beserta pesan sukses
+    //     return redirect()->route('kategori.index')->with('success', $request->nama_kategori.' Berhasil Diubah');
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -156,28 +156,27 @@ class KategoriController extends Controller
         }
     }
 
-    public function updateKategori(Request $request,$id)
+    public function updateKategori(Request $request, $id)
     {
         $kategori = kategori::find($id);
-        //validasi input nama imput disamakan dengan tabel kolom
+        // validasi input
         $input = $request->validate([
-            "nama_kategori" =>"required",
+            "nama_kategori" =>"required|unique:kategoris",
             "jenis"         =>"required",
             "deskripsi"     =>"required",
             "status"        =>"required",
         ]);
-
-        //update data
+        // update data
         $hasil = $kategori->update($input);
 
-        if($hasil){// jika berhasil disimpan
+        if($hasil){ // jika data berhasil disimpan
             $response['success'] = true;
-            $response['message'] ="kategori Berhasil Diubah";
-            return response()->json($response, 201); // 201 create atau sudah berhasil disimpan
-        }else{
+            $response['message'] = "Data kategori berhasil diubah";
+            return response()->json($response, 200);
+        } else {
             $response['success'] = false;
-            $response['message'] =  "kategori gagal diubah";
-            return response()->json($response, 400); //400 bad request
+            $response['message'] = "Data kategori gagal diubah";
+            return response()->json($response, 400);
         }
     }
 }
