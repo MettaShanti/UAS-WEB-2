@@ -143,26 +143,26 @@ class BarangController extends Controller
     public function updateBarang(Request $request, $id)
     {
         $barang = barang::find($id);
-        //validasi input nama imput disamakan dengan tabel kolom
+       
+        // validasi input
         $input = $request->validate([
             "kode_barang" =>"required",
-            "nama_barang" =>"required",
-            "harga_jual"  =>"required",
-            "harga_pokok" =>"required",
-            "kategori_id" =>"required"
+            "nama_barang" => "required",
+            "harga_jual"  => "required",
+            "harga_pokok"  => "required",
+            "kategori_id"  => "required"
         ]);
-
-        //update data
+        // update data
         $hasil = $barang->update($input);
 
-        if($hasil){// jika berhasil disimpan
+        if($hasil){ // jika data berhasil disimpan
             $response['success'] = true;
-            $response['message'] ="Barang Berhasil Diubah";
-            return response()->json($response, 201); // 201 create atau sudah berhasil disimpan
-        }else{
+            $response['message'] = "Data barang berhasil diubah";
+            return response()->json($response, 200);
+        } else {
             $response['success'] = false;
-            $response['message'] =  "Barang gagal diubah";
-            return response()->json($response, 400); //400 bad request
+            $response['message'] = "Data barang gagal diubah";
+            return response()->json($response, 400);
         }
     }
 }
